@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
-import contractABI from "./MaterialABI.json"; 
+import contractABI from "./MaterialABI.json";
 import { ethers } from "ethers";
 import ReactModal from "react-modal";
 import AddMaterialModal from "./AddMaterialModal";
-const contractAddress = "0xa5fcc0544c967aCfD24602088ae065f478f2069e"; 
+const contractAddress = "0xac48FD75b6367F7E20d5CcA0123b676aa2dd20F9";
 // import Modal from "react-modal";
 
 export default function OwnerSection() {
@@ -100,13 +100,12 @@ export default function OwnerSection() {
   };
 
   return (
-    <div className="App">
-        <h1>Owner Section</h1>
-      {" "}
+    <div className="container">
+      <h1>Owner Section</h1>{" "}
       <button className="connect2" onClick={() => setIsModalOpen(true)}>
         Add Material
       </button>
-       {/* open AddMaterialModal */}
+      {/* open AddMaterialModal */}
       <AddMaterialModal
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
@@ -121,32 +120,22 @@ export default function OwnerSection() {
         materialUrl={materialUrl}
         isLoading={isLoading}
       />
-
       {/* to view all the materials */}
       <button className="connect2" onClick={getAllMaterials}>
         View Materials
       </button>
       {errormessage}
-      <div>
-        <h3>All Materials:</h3>
-        <ul>
-          {materials.map((material, index) => (
-            <div className="card" key={index}>
-              <li>
-                <strong> {material.name}</strong>,{" "}
-              </li>
-              <li>
-                {" "}
-                <strong> {material.description}</strong> ,{" "}
-              </li>
-
-              <li>
-                {" "}
-                <strong>{material.imageUrl}</strong>
-              </li>
+      <h3>All Materials:</h3>
+      <div className="Card_arrange">
+        {materials.map((material, index) => (
+          <div className="card" key={index}>
+            <img src={material.imageUrl} alt="Profile" className="image" />
+            <div className="textContainer">
+              <h2 className="name">{material.name}</h2>
+              <p className="description">{material.description}</p>
             </div>
-          ))}
-        </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import contractABI from "./MaterialABI.json"; 
 import { ethers } from "ethers";
-const contractAddress = "0xa5fcc0544c967aCfD24602088ae065f478f2069e"; 
+const contractAddress = "0xac48FD75b6367F7E20d5CcA0123b676aa2dd20F9"; 
 
 
 
@@ -61,33 +61,24 @@ export default function UserSection() {
     }
   };
   return (
-    <div>
+    <div className="container">
       <h1>UserSection</h1>
       {/* to view all the materials */}
       <button className="connect2" onClick={getAllMaterials}>
         View Materials
       </button>
       {errormessage}
-      <div>
-        <h3>All Materials:</h3>
-        <ul>
-          {materials.map((material, index) => (
-            <div className="card" key={index}>
-              <li>
-                <strong> {material.name}</strong>,{" "}
-              </li>
-              <li>
-                {" "}
-                <strong> {material.description}</strong> ,{" "}
-              </li>
-
-              <li>
-                {" "}
-                <strong>{material.imageUrl}</strong>
-              </li>
+      <h3>All Materials:</h3>
+      <div className="Card_arrange">
+        {materials.map((material, index) => (
+          <div className="card" key={index}>
+            <img src={material.imageUrl} alt="Profile" className="image" />
+            <div className="textContainer">
+              <h2 className="name">{material.name}</h2>
+              <p className="description">{material.description}</p>
             </div>
-          ))}
-        </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

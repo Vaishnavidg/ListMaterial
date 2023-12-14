@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Material from "./Material";
 import { ethers } from "ethers";
-import contractABI from "./MaterialABI.json"; 
+import contractABI from "./MaterialABI.json";
 import OwnerSection from "./OwnerSection";
 import UserSection from "./UserSection";
 import { Link } from "react-router-dom";
-const contractAddress = "0xa5fcc0544c967aCfD24602088ae065f478f2069e"; 
+const contractAddress = "0xac48FD75b6367F7E20d5CcA0123b676aa2dd20F9";
+// const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
 export default function Home() {
   const [errormessage, setErrormessage] = useState(null);
@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="container">
       <button className="connect2" onClick={ConnectContract}>
         MetaMask Connect
       </button>
@@ -87,11 +87,9 @@ export default function Home() {
         />
       )}
       {errormessage}
-
     </div>
   );
 }
-
 
 //4.Compare owner Address and user Address to present next screen
 const MaterialComponent = ({ userAddress, ownerAddress }) => {
